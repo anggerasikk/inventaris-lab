@@ -33,21 +33,19 @@ class User extends Authenticatable
         ];
     }
 
-    // Check if user is admin
+    // ✅ TAMBAHKAN METHOD INI
     public function isAdmin()
     {
         return $this->role === 'admin';
     }
 
-    // Check if user is mahasiswa
-    public function isMahasiswa()
-    {
-        return $this->role === 'mahasiswa';
-    }
-
-    // Check if user is dosen
     public function isDosen()
     {
         return $this->role === 'dosen';
+    }
+
+    public function isMahasiswa()
+    {
+        return $this->role === 'mahasiswa';
     }
 }

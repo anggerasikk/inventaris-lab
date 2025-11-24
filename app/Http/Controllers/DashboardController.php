@@ -35,6 +35,8 @@ class DashboardController extends Controller
             ->limit(10)
             ->get();
 
-        return view('dashboard.index', compact('stats', 'monthlyBorrowings', 'recentBorrowings'));
+        $borrowings = Borrowing::all();
+
+        return view('dashboard.index', compact('stats', 'monthlyBorrowings', 'recentBorrowings', 'borrowings'));
     }
 }
