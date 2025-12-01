@@ -18,7 +18,12 @@ Route::get('/', function () {
 // Authenticated Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-    
+
+Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
+    // Dashboard Admin (IL-010)
+     Route::get('/dashboard', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+});
     // Peminjaman untuk semua user
     Route::prefix('borrowings')->group(function () {
         Route::get('/create', [BorrowingController::class, 'create'])->name('borrowings.create');
