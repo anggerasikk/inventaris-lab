@@ -1,5 +1,10 @@
 @extends('layouts.app')
 
+@section('title_menu')
+    {{-- Ini adalah Judul Dinamis yang menggantikan "Dashboard Utama" --}}
+    <h3 class="mb-3 text-dark"><i class="fas fa-book-reader me-2 text-success"></i>Manajemen Peminjaman</h3>
+@endsection
+
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">
     <h2>Manajemen Peminjaman</h2>
@@ -46,7 +51,7 @@
             <div class="tab-pane fade" id="all">
                 @include('borrowings.partials.borrowing-table', [
                     'borrowings' => $borrowings,
-                    'showActions' => false
+                    'showActions' => true
                 ])
             </div>
         </div>

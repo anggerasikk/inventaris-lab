@@ -1,4 +1,8 @@
 @extends('layouts.app')
+@section('title_menu')
+    {{-- Ini adalah Judul Dinamis yang menggantikan "Dashboard Utama" --}}
+    <h3 class="mb-3 text-dark"><i class="fas fa-file-alt me-2 text-success"></i>Laporan Peminjaman</h3>
+@endsection
 
 @section('content')
 <div class="d-flex justify-content-between align-items-center mb-4">

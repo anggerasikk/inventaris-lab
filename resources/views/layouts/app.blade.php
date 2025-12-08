@@ -173,29 +173,14 @@
             </div>
             
             <div class="row mt-4">
-                <div class="col-lg-8 mb-4">
-                    <h3 class="mb-3 text-dark"><i class="fas fa-home me-2 text-primary"></i>Dashboard Utama</h3>
-                    <div class="card shadow-sm">
-                        <div class="card-body">
-                            @yield('content') 
-                            <p class="text-muted mt-3 mb-0">
-                                <i class="fas fa-table me-1"></i> Area ini dapat diisi dengan tabel data peminjaman/pengembalian terbaru, notifikasi, atau statistik khusus.
-                            </p>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-4 mb-4">
-                    <div class="card shadow-sm h-100">
-                        <div class="card-header bg-light text-primary">
-                            <i class="fas fa-info-circle me-2"></i>Informasi Umum
-                        </div>
-                        <div class="card-body">
-                            <p class="card-text">Silakan gunakan widget di atas untuk navigasi cepat ke fitur utama sistem.</p>
-                            <p class="small text-muted border-top pt-2 mt-3 mb-0">
-                                Sistem ini dibangun untuk memfasilitasi pengelolaan inventaris laboratorium secara efisien.
-                            </p>
-                        </div>
-                    </div>
+                <div class="col-lg-12 mb-4">
+                    
+                    {{-- GANTI JUDUL STATIS DENGAN YIELD TITLE --}}
+                    @yield('title_menu') 
+
+                    {{-- HAPUS WRAPPER CARD DARI LAYOUT --}}
+                    @yield('content') 
+                    
                 </div>
             </div>
 
