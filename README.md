@@ -8,21 +8,6 @@
 ![MySQL](https://img.shields.io/badge/MySQL-8.0-00758F?style=for-the-badge&logo=mysql)
 ![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
----
-
-## 📋 Daftar Isi
-
-- [Tentang Project](#tentang-project)
-- [Fitur Utama](#fitur-utama)
-- [Tech Stack](#tech-stack)
-- [Instalasi](#instalasi)
-- [Konfigurasi](#konfigurasi)
-- [Penggunaan](#penggunaan)
-- [Struktur Database](#struktur-database)
-- [Fitur Lanjutan](#fitur-lanjutan)
-- [Progress & Status](#progress--status)
-- [Kontribusi](#kontribusi)
-- [License](#license)
 
 ---
 
@@ -34,7 +19,6 @@
 - 👥 Sistem role-based (Admin, Mahasiswa, Dosen)
 - 📋 Proses peminjaman barang dengan approval workflow
 - 📄 Upload surat permohonan peminjaman
-- 📧 Notifikasi email otomatis
 - 📱 Interface responsif untuk mobile/tablet/desktop
 - 💾 Tracking stok otomatis saat peminjaman disetujui
 
@@ -247,9 +231,7 @@ File: `app/Observers/BorrowingObserver.php`
 
 ---
 
-## 📊 Progress & Status
-
-### ✅ Completed Features
+## ✅ Completed Features
 - [x] User authentication & registration (role-based)
 - [x] CRUD barang dengan kategori
 - [x] Sistem peminjaman dengan approval
@@ -263,21 +245,6 @@ File: `app/Observers/BorrowingObserver.php`
 - [x] Dropdown cleanup (remove profile)
 - [x] Available quantity display untuk users
 - [x] Form improvement (barang, jumlah, no HP dalam 1 row)
-
-### 🔄 In Progress
-- [ ] Dashboard analytics & charts
-- [ ] Advanced reporting (PDF export)
-- [ ] Multi-language support
-- [ ] Dark mode theme
-- [ ] User profile settings
-
-### 📌 Planned Features
-- [ ] QR code scanning untuk return
-- [ ] SMS notifications
-- [ ] Booking system (reserve barang)
-- [ ] Maintenance tracking
-- [ ] Audit log
-- [ ] API endpoint untuk mobile app
 
 ---
 
@@ -369,18 +336,6 @@ php artisan tinker                  # Interactive shell
 
 ---
 
-## 🤝 Kontribusi
-
-Kontribusi sangat diterima! Silakan:
-
-1. Fork repository ini
-2. Buat branch feature (`git checkout -b feature/AmazingFeature`)
-3. Commit changes (`git commit -m 'Add AmazingFeature'`)
-4. Push ke branch (`git push origin feature/AmazingFeature`)
-5. Buka Pull Request
-
----
-
 ## 📝 License
 
 Project ini licensed under the MIT License - lihat file [LICENSE](LICENSE) untuk details.
@@ -390,16 +345,8 @@ Project ini licensed under the MIT License - lihat file [LICENSE](LICENSE) untuk
 ## 👨‍💻 Author
 
 **Anggerasikk**
-- GitHub: [@anggerasikk](https://github.com/anggerasikk)
+- GitHub: [@anggerasikk](https://github.com/anggerasikk) [@fathka](https://github.com/fathka) [NAJELA-SKY](https://github.com/NAJELA-SKY)
 - Project: Sistem Inventaris Laboratorium
-
----
-
-## 📞 Support & Contact
-
-Jika ada pertanyaan atau menemukan bug:
-- Buka [GitHub Issues](https://github.com/anggerasikk/inventaris-lab/issues)
-- Email: [your-email@example.com]
 
 ---
 
@@ -413,7 +360,7 @@ Terima kasih telah menggunakan Sistem Inventaris Laboratorium!
 
 **⭐ Jika project ini membantu Anda, jangan lupa untuk beri star! ⭐**
 
-Made with ❤️ by Anggerasikk
+Made with ❤️ 
 
 </div>
 
