@@ -124,7 +124,3 @@
     }
 </style>
 @endsection
-        </form>
-    </div>
-</div>
-@endsection

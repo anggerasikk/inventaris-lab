@@ -45,8 +45,9 @@
                                         <span class="badge bg-secondary text-nowrap">{{ $categoryLabels[$item->category] ?? $item->category }}</span>
                                     </td>
                                     <td class="text-center align-middle">
-                                        <span class="badge {{ $item->quantity > 0 ? 'bg-success' : 'bg-danger' }} text-nowrap">
-                                            {{ $item->quantity }} <span class="d-none d-sm-inline">unit</span>
+                                        @php $available = $item->available_quantity; @endphp
+                                        <span class="badge {{ $available > 0 ? 'bg-success' : 'bg-danger' }} text-nowrap">
+                                            {{ $available }} <span class="d-none d-sm-inline">unit</span>
                                         </span>
                                     </td>
                                     <td class="align-middle d-none d-md-table-cell">{{ $item->location }}</td>
