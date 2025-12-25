@@ -6,25 +6,25 @@
 @endsection
 
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2>Manajemen Peminjaman</h2>
+<div class="d-flex justify-content-between align-items-center mb-4 flex-wrap gap-2">
+    <h2 class="mb-0">Manajemen Peminjaman</h2>
 </div>
 
-<div class="card">
+<div class="card shadow-sm">
     <div class="card-body">
-        <ul class="nav nav-tabs" id="borrowingTabs" role="tablist">
+        <ul class="nav nav-tabs flex-nowrap overflow-auto" id="borrowingTabs" role="tablist">
             <li class="nav-item" role="presentation">
-                <button class="nav-link active" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button">
-                    Menunggu <span class="badge bg-warning">{{ $borrowings->where('status', 'pending')->count() }}</span>
+                <button class="nav-link active text-nowrap" id="pending-tab" data-bs-toggle="tab" data-bs-target="#pending" type="button">
+                    Menunggu <span class="badge bg-warning ms-1">{{ $borrowings->where('status', 'pending')->count() }}</span>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="approved-tab" data-bs-toggle="tab" data-bs-target="#approved" type="button">
-                    Disetujui <span class="badge bg-success">{{ $borrowings->where('status', 'approved')->count() }}</span>
+                <button class="nav-link text-nowrap" id="approved-tab" data-bs-toggle="tab" data-bs-target="#approved" type="button">
+                    Disetujui <span class="badge bg-success ms-1">{{ $borrowings->where('status', 'approved')->count() }}</span>
                 </button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button">
+                <button class="nav-link text-nowrap" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button">
                     Semua Data
                 </button>
             </li>
@@ -57,4 +57,19 @@
         </div>
     </div>
 </div>
+
+<style>
+    @media (max-width: 576px) {
+        .nav-tabs {
+            border-bottom: 2px solid #dee2e6;
+        }
+        .nav-link {
+            font-size: 0.85rem;
+            padding: 0.5rem 0.75rem;
+        }
+        h2 {
+            font-size: 1.25rem;
+        }
+    }
+</style>
 @endsection

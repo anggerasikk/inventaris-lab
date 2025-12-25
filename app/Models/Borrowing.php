@@ -12,7 +12,7 @@ class Borrowing extends Model
     protected $fillable = [
         'user_id', 'item_id', 'quantity', 'purpose', 'borrow_date', 
         'return_date', 'actual_return_date', 'status', 'admin_notes',
-        'borrower_type', 'phone_number'
+        'borrower_type', 'phone_number', 'letter_path'
     ];
 
     protected $casts = [

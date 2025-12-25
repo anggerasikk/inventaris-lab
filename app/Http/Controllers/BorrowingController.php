@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Borrowing;
 use App\Models\Item;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -25,7 +26,8 @@ class BorrowingController extends Controller
             'purpose' => 'required|string|max:500',
             'borrow_date' => 'required|date|after_or_equal:today',
             'return_date' => 'required|date|after:borrow_date',
-            'phone_number' => 'required|string|max:15'
+            'phone_number' => 'required|string|max:15',
+            'letter' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048'
         ]);
 
         $item = Item::findOrFail($request->item_id);
@@ -35,6 +37,16 @@ class BorrowingController extends Controller
             return back()->with('error', 'Item tidak tersedia atau stok tidak mencukupi.');
         }
 
+        // Handle file upload
+        $letterPath = null;
+        if ($request->hasFile('letter')) {
+            $letterPath = $request->file('letter')->store('borrowing_letters', 'public');
+        }
+
+        // Get borrower type dari user role yang login
+        $user = Auth::user();
+        $borrowerType = $user->role; // Ambil langsung dari field role user
+
         Borrowing::create([
             'user_id' => Auth::id(),
             'item_id' => $request->item_id,
@@ -42,8 +54,9 @@ class BorrowingController extends Controller
             'purpose' => $request->purpose,
             'borrow_date' => $request->borrow_date,
             'return_date' => $request->return_date,
-            'borrower_type' => Auth::user()->isMahasiswa() ? 'mahasiswa' : 'dosen',
+            'borrower_type' => $borrowerType,
             'phone_number' => $request->phone_number,
+            'letter_path' => $letterPath,
             'status' => 'pending'
         ]);
 
@@ -76,9 +89,17 @@ class BorrowingController extends Controller
     public function approve($id)
     {
         $borrowing = Borrowing::findOrFail($id);
+        $item = $borrowing->item;
+
+        // Cek apakah stok masih tersedia
+        if ($item->quantity < $borrowing->quantity) {
+            return back()->with('error', 'Stok item tidak mencukupi! Stok tersedia: ' . $item->quantity);
+        }
+
+        // Update status menjadi approved (Observer akan otomatis kurangi stok)
         $borrowing->update(['status' => 'approved']);
 
-        return back()->with('success', 'Peminjaman disetujui!');
+        return back()->with('success', 'Peminjaman disetujui! Stok otomatis berkurang.');
     }
 
     // ADMIN: Reject peminjaman
@@ -99,11 +120,13 @@ class BorrowingController extends Controller
     public function markReturned($id)
     {
         $borrowing = Borrowing::findOrFail($id);
+        
+        // Update status menjadi returned (Observer akan otomatis tambah stok)
         $borrowing->update([
             'status' => 'returned',
             'actual_return_date' => now()
         ]);
 
-        return back()->with('success', 'Item telah dikembalikan!');
+        return back()->with('success', 'Item telah dikembalikan! Stok otomatis bertambah.');
     }
 }
