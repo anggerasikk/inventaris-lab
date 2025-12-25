@@ -1,52 +1,477 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 📦 Sistem Inventaris Laboratorium
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+> Aplikasi manajemen inventaris laboratorium berbasis web dengan fitur peminjaman barang terintegrasi
 
-## About Laravel
+![Laravel](https://img.shields.io/badge/Laravel-12.39.0-FF2D20?style=for-the-badge&logo=laravel)
+![PHP](https://img.shields.io/badge/PHP-8.3.26-777BB4?style=for-the-badge&logo=php)
+![Bootstrap](https://img.shields.io/badge/Bootstrap-5.1.3-7952B3?style=for-the-badge&logo=bootstrap)
+![MySQL](https://img.shields.io/badge/MySQL-8.0-00758F?style=for-the-badge&logo=mysql)
+![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+---
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## 📋 Daftar Isi
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+- [Tentang Project](#tentang-project)
+- [Fitur Utama](#fitur-utama)
+- [Tech Stack](#tech-stack)
+- [Instalasi](#instalasi)
+- [Konfigurasi](#konfigurasi)
+- [Penggunaan](#penggunaan)
+- [Struktur Database](#struktur-database)
+- [Fitur Lanjutan](#fitur-lanjutan)
+- [Progress & Status](#progress--status)
+- [Kontribusi](#kontribusi)
+- [License](#license)
 
-## Learning Laravel
+---
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+## 📖 Tentang Project
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+**Sistem Inventaris Laboratorium** adalah aplikasi web modern yang dirancang untuk mengelola inventaris barang di laboratorium dengan sistem peminjaman terintegrasi. Aplikasi ini memungkinkan:
 
-## Laravel Sponsors
+- 📊 Manajemen data barang secara real-time
+- 👥 Sistem role-based (Admin, Mahasiswa, Dosen)
+- 📋 Proses peminjaman barang dengan approval workflow
+- 📄 Upload surat permohonan peminjaman
+- 📧 Notifikasi email otomatis
+- 📱 Interface responsif untuk mobile/tablet/desktop
+- 💾 Tracking stok otomatis saat peminjaman disetujui
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+---
 
-### Premium Partners
+## ✨ Fitur Utama
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+### 🔐 Sistem Autentikasi & Otorisasi
+- ✅ Registrasi pengguna (Mahasiswa/Dosen/Admin)
+- ✅ Login dengan role-based access control
+- ✅ Password hashing & security
+- ✅ Session management
 
-## Contributing
+### 📦 Manajemen Barang (Admin)
+- ✅ CRUD barang (Create, Read, Update, Delete)
+- ✅ Kategorisasi barang (Elektronik, Alat, Bahan, Perkakas, Lainnya)
+- ✅ Tracking lokasi dan kondisi barang
+- ✅ Status ketersediaan barang
+- ✅ Real-time stok update
+- ✅ Backup barang yang dihapus (soft delete)
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### 🤝 Sistem Peminjaman
+- ✅ User (Mahasiswa/Dosen) dapat melihat daftar barang tersedia
+- ✅ Form peminjaman dengan:
+  - Pemilihan barang
+  - Jumlah peminjaman
+  - Tanggal pinjam & kembali
+  - Keperluan/purpose
+  - Upload surat permohonan (PDF/DOC/DOCX/JPG/PNG - Max 2MB)
+  - No. HP peminjam
 
-## Code of Conduct
+### ✅ Approval Workflow (Admin)
+- ✅ Dashboard peminjaman dengan status filtering
+- ✅ Approve/Reject peminjaman dengan catatan
+- ✅ Mark as returned (konfirmasi pengembalian)
+- ✅ Automatic stock decrease saat approved
+- ✅ Automatic stock increase saat returned
+
+### 📧 Notifikasi Email
+- ✅ Email otomatis saat peminjaman disetujui
+- ✅ Email otomatis saat peminjaman ditolak (+ alasan)
+- ✅ Format email profesional dengan link action
+
+### 📱 Interface Responsif
+- ✅ Mobile-first design
+- ✅ Navbar sticky saat scroll
+- ✅ Responsive tables dengan horizontal scroll
+- ✅ Touch-friendly buttons (min-height 44px)
+- ✅ Optimized untuk semua screen sizes
+
+### 📊 Fitur Reporting (Dalam Pengembangan)
+- 🔄 Laporan inventaris
+- 🔄 Laporan peminjaman
+- 🔄 Export ke PDF/Excel
+
+---
+
+## 🛠️ Tech Stack
+
+### Backend
+- **Framework**: Laravel 12.39.0
+- **Language**: PHP 8.3.26
+- **Database**: MySQL 8.0
+- **Authentication**: Laravel Auth (custom RegisterController)
+- **ORM**: Eloquent
+- **Design Pattern**: Observer Pattern (untuk auto stock update)
+
+### Frontend
+- **CSS Framework**: Bootstrap 5.1.3
+- **Icons**: Font Awesome 6.0.0
+- **Templating**: Blade (Laravel)
+- **Responsiveness**: CSS Media Queries + Bootstrap Grid
+
+### Tools & Dependencies
+- **Composer**: Package management
+- **Artisan**: CLI commands
+- **NPM/Vite**: Asset bundling (jika diperlukan)
+
+---
+
+## 🚀 Instalasi
+
+### Prasyarat
+- PHP 8.3+
+- MySQL 8.0+
+- Composer
+- Git
+
+### Langkah 1: Clone Repository
+```bash
+git clone https://github.com/anggerasikk/inventaris-lab.git
+cd inventaris-lab
+```
+
+### Langkah 2: Install Dependencies
+```bash
+composer install
+```
+
+### Langkah 3: Setup Environment
+```bash
+cp .env.example .env
+php artisan key:generate
+```
+
+### Langkah 4: Database Configuration
+Edit file `.env` dan atur database:
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=inventaris_lab
+DB_USERNAME=root
+DB_PASSWORD=
+```
+
+### Langkah 5: Migrasi Database
+```bash
+php artisan migrate
+php artisan storage:link
+```
+
+### Langkah 6: Jalankan Server
+```bash
+php artisan serve
+```
+
+Aplikasi akan berjalan di: `http://127.0.0.1:8000`
+
+---
+
+## ⚙️ Konfigurasi
+
+### Email Configuration (untuk notifikasi)
+Edit `.env`:
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=null
+MAIL_FROM_ADDRESS=no-reply@inventaris-lab.test
+MAIL_FROM_NAME="Inventaris Lab"
+```
+
+Atau gunakan mailer lain (Gmail, SendGrid, dll).
+
+### File Storage Configuration
+Pastikan direktori storage sudah writable:
+```bash
+chmod -R 775 storage/
+chmod -R 775 bootstrap/cache/
+```
+
+### Caching & Queue (Optional)
+Jika ingin notifikasi email queued (async):
+```bash
+php artisan queue:work
+```
+
+---
+
+## 📖 Penggunaan
+
+### Akun Admin
+1. Register atau gunakan akun dengan role `admin`
+2. Login ke dashboard admin
+3. Kelola barang, approve/reject peminjaman
+
+### Akun User (Mahasiswa/Dosen)
+1. Register memilih role Mahasiswa atau Dosen
+2. Login ke dashboard user
+3. Lihat barang tersedia → Pinjam barang → Upload surat → Submit
+4. Tunggu persetujuan dari admin
+5. Lihat riwayat peminjaman
+
+### Admin Actions
+- **Dashboard**: Overview peminjaman pending/approved
+- **Data Barang**: Kelola CRUD barang inventaris
+- **Peminjaman**: Approve/Reject dengan catatan
+- **Konfirmasi Pengembalian**: Mark as returned saat barang dikembalikan
+
+### User Actions
+- **Lihat Barang**: Browse barang tersedia untuk dipinjam
+- **Detail Barang**: Lihat spesifikasi & kondisi
+- **Ajukan Peminjaman**: Form dengan upload dokumen
+- **Riwayat**: Tracking status peminjaman
+
+---
+
+## 🗄️ Struktur Database
+
+### Tabel Utama
+
+#### `users`
+```sql
+id, name, email, password, role (mahasiswa/dosen/admin), created_at, updated_at
+```
+
+#### `items`
+```sql
+id, name, description, quantity, category, location, condition, is_available, created_at, updated_at
+```
+
+#### `borrowings`
+```sql
+id, user_id, item_id, quantity, borrow_date, return_date, actual_return_date, 
+status (pending/approved/rejected/returned), purpose, borrower_type, phone_number, 
+letter_path, admin_notes, created_at, updated_at
+```
+
+### Relasi
+- `User` hasMany `Borrowing`
+- `Item` hasMany `Borrowing`
+- `Borrowing` belongsTo `User` & `Item`
+
+---
+
+## 🎯 Fitur Lanjutan
+
+### Observer Pattern untuk Auto Stock Update
+File: `app/Observers/BorrowingObserver.php`
+
+```php
+// Saat status → approved: quantity berkurang otomatis
+// Saat status → returned: quantity bertambah otomatis
+// Saat status → rejected: tidak ada perubahan stok
+```
+
+### Email Notifications
+File: `app/Notifications/BorrowingStatusNotification.php`
+
+Mengirim email dengan detail:
+- Status peminjaman (Disetujui/Ditolak)
+- Info barang & tanggal
+- Alasan penolakan (jika ditolak)
+- Link ke riwayat peminjaman
+
+### Responsive Design
+- Sticky header untuk easy navigation
+- Responsive tables dengan horizontal scroll
+- Mobile-optimized buttons & forms
+- CSS Media queries untuk breakpoints
+
+---
+
+## 📊 Progress & Status
+
+### ✅ Completed Features
+- [x] User authentication & registration (role-based)
+- [x] CRUD barang dengan kategori
+- [x] Sistem peminjaman dengan approval
+- [x] Auto stock management via Observer
+- [x] Upload surat permohonan
+- [x] Email notifikasi (approve/reject)
+- [x] Responsive design (mobile/tablet/desktop)
+- [x] User read-only item view
+- [x] Admin CRUD protection
+- [x] Admin approval workflow
+- [x] Header sticky navigation
+- [x] Dropdown cleanup (remove profile)
+- [x] Available quantity display untuk users
+- [x] Form improvement (barang, jumlah, no HP dalam 1 row)
+
+### 🔄 In Progress
+- [ ] Dashboard analytics & charts
+- [ ] Advanced reporting (PDF export)
+- [ ] Multi-language support
+- [ ] Dark mode theme
+- [ ] User profile settings
+
+### 📌 Planned Features
+- [ ] QR code scanning untuk return
+- [ ] SMS notifications
+- [ ] Booking system (reserve barang)
+- [ ] Maintenance tracking
+- [ ] Audit log
+- [ ] API endpoint untuk mobile app
+
+---
+
+## 🗂️ Struktur Folder Project
+
+```
+inventaris-lab/
+├── app/
+│   ├── Http/
+│   │   ├── Controllers/
+│   │   │   ├── ItemController.php
+│   │   │   ├── BorrowingController.php
+│   │   │   └── Auth/RegisterController.php
+│   │   ├── Middleware/
+│   │   └── Kernel.php
+│   ├── Models/
+│   │   ├── User.php
+│   │   ├── Item.php
+│   │   └── Borrowing.php
+│   ├── Observers/
+│   │   └── BorrowingObserver.php
+│   ├── Notifications/
+│   │   └── BorrowingStatusNotification.php
+│   └── Providers/
+│       └── AppServiceProvider.php
+├── resources/
+│   ├── views/
+│   │   ├── layouts/
+│   │   │   └── app.blade.php
+│   │   ├── items/
+│   │   │   ├── index.blade.php
+│   │   │   ├── list.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── edit.blade.php
+│   │   │   └── show.blade.php
+│   │   ├── borrowings/
+│   │   │   ├── index.blade.php
+│   │   │   ├── create.blade.php
+│   │   │   ├── history.blade.php
+│   │   │   └── partials/
+│   │   │       └── borrowing-table.blade.php
+│   │   └── auth/
+│   ├── css/
+│   └── js/
+├── database/
+│   ├── migrations/
+│   │   ├── 2025_11_24_034441_create_items_table.php
+│   │   ├── 2025_11_24_034539_create_borrowings_table.php
+│   │   └── 2025_12_25_add_letter_to_borrowings.php
+│   └── seeders/
+├── routes/
+│   ├── web.php
+│   └── console.php
+├── storage/
+│   ├── app/public/borrowing_letters/
+│   └── logs/
+├── public/
+├── .env.example
+├── composer.json
+├── README.md
+└── artisan
+```
+
+---
+
+## 🔧 Development Commands
+
+### Database
+```bash
+php artisan migrate                 # Run migrations
+php artisan migrate:refresh         # Refresh database
+php artisan migrate:reset           # Reset database
+php artisan db:seed                 # Seed database
+```
+
+### Cache & Assets
+```bash
+php artisan cache:clear             # Clear cache
+php artisan view:clear              # Clear views
+php artisan config:cache            # Cache config
+php artisan storage:link            # Create storage symlink
+```
+
+### Server
+```bash
+php artisan serve                   # Development server
+php artisan tinker                  # Interactive shell
+```
+
+---
+
+## 📧 Testing Email Notifications
+
+### Menggunakan Mailtrap (Recommended untuk Testing)
+1. Buat akun di [mailtrap.io](https://mailtrap.io)
+2. Copy credentials ke `.env`
+3. Kirim test email lewat:
+   ```bash
+   php artisan tinker
+   >>> Mail::raw('Test', function($m) { $m->to('test@test.com'); });
+   ```
+
+### Local Development (Log Driver)
+Edit `.env`:
+```env
+MAIL_MAILER=log
+```
+Email akan disimpan di `storage/logs/laravel.log`
+
+---
+
+## 🤝 Kontribusi
+
+Kontribusi sangat diterima! Silakan:
+
+1. Fork repository ini
+2. Buat branch feature (`git checkout -b feature/AmazingFeature`)
+3. Commit changes (`git commit -m 'Add AmazingFeature'`)
+4. Push ke branch (`git push origin feature/AmazingFeature`)
+5. Buka Pull Request
+
+---
+
+## 📝 License
+
+Project ini licensed under the MIT License - lihat file [LICENSE](LICENSE) untuk details.
+
+---
+
+## 👨‍💻 Author
+
+**Anggerasikk**
+- GitHub: [@anggerasikk](https://github.com/anggerasikk)
+- Project: Sistem Inventaris Laboratorium
+
+---
+
+## 📞 Support & Contact
+
+Jika ada pertanyaan atau menemukan bug:
+- Buka [GitHub Issues](https://github.com/anggerasikk/inventaris-lab/issues)
+- Email: [your-email@example.com]
+
+---
+
+## 🎉 Terima Kasih
+
+Terima kasih telah menggunakan Sistem Inventaris Laboratorium!
+
+---
+
+<div align="center">
+
+**⭐ Jika project ini membantu Anda, jangan lupa untuk beri star! ⭐**
+
+Made with ❤️ by Anggerasikk
+
+</div>
 
 In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
 
