@@ -73,12 +73,7 @@
 - ✅ Automatic stock decrease saat approved
 - ✅ Automatic stock increase saat returned
 
-### 📧 Notifikasi Email
-- ✅ Email otomatis saat peminjaman disetujui
-- ✅ Email otomatis saat peminjaman ditolak (+ alasan)
-- ✅ Format email profesional dengan link action
-
-### 📱 Interface Responsif
+###  Interface Responsif
 - ✅ Mobile-first design
 - ✅ Navbar sticky saat scroll
 - ✅ Responsive tables dengan horizontal scroll
@@ -168,32 +163,11 @@ Aplikasi akan berjalan di: `http://127.0.0.1:8000`
 
 ## ⚙️ Konfigurasi
 
-### Email Configuration (untuk notifikasi)
-Edit `.env`:
-```env
-MAIL_MAILER=smtp
-MAIL_HOST=smtp.mailtrap.io
-MAIL_PORT=2525
-MAIL_USERNAME=your_username
-MAIL_PASSWORD=your_password
-MAIL_ENCRYPTION=null
-MAIL_FROM_ADDRESS=no-reply@inventaris-lab.test
-MAIL_FROM_NAME="Inventaris Lab"
-```
-
-Atau gunakan mailer lain (Gmail, SendGrid, dll).
-
 ### File Storage Configuration
 Pastikan direktori storage sudah writable:
 ```bash
 chmod -R 775 storage/
 chmod -R 775 bootstrap/cache/
-```
-
-### Caching & Queue (Optional)
-Jika ingin notifikasi email queued (async):
-```bash
-php artisan queue:work
 ```
 
 ---
@@ -265,15 +239,6 @@ File: `app/Observers/BorrowingObserver.php`
 // Saat status → rejected: tidak ada perubahan stok
 ```
 
-### Email Notifications
-File: `app/Notifications/BorrowingStatusNotification.php`
-
-Mengirim email dengan detail:
-- Status peminjaman (Disetujui/Ditolak)
-- Info barang & tanggal
-- Alasan penolakan (jika ditolak)
-- Link ke riwayat peminjaman
-
 ### Responsive Design
 - Sticky header untuk easy navigation
 - Responsive tables dengan horizontal scroll
@@ -290,7 +255,6 @@ Mengirim email dengan detail:
 - [x] Sistem peminjaman dengan approval
 - [x] Auto stock management via Observer
 - [x] Upload surat permohonan
-- [x] Email notifikasi (approve/reject)
 - [x] Responsive design (mobile/tablet/desktop)
 - [x] User read-only item view
 - [x] Admin CRUD protection
@@ -402,26 +366,6 @@ php artisan storage:link            # Create storage symlink
 php artisan serve                   # Development server
 php artisan tinker                  # Interactive shell
 ```
-
----
-
-## 📧 Testing Email Notifications
-
-### Menggunakan Mailtrap (Recommended untuk Testing)
-1. Buat akun di [mailtrap.io](https://mailtrap.io)
-2. Copy credentials ke `.env`
-3. Kirim test email lewat:
-   ```bash
-   php artisan tinker
-   >>> Mail::raw('Test', function($m) { $m->to('test@test.com'); });
-   ```
-
-### Local Development (Log Driver)
-Edit `.env`:
-```env
-MAIL_MAILER=log
-```
-Email akan disimpan di `storage/logs/laravel.log`
 
 ---
 
