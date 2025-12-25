@@ -8,6 +8,15 @@ use Illuminate\Http\Request;
 class ItemController extends Controller
 {
     /**
+     * Display a listing of all items for users (READ-ONLY)
+     */
+    public function list()
+    {
+        $items = Item::where('is_available', true)->get();
+        return view('items.list', compact('items'));
+    }
+
+    /**
      * Display a listing of the resource.
      */
     public function index()
@@ -48,7 +57,7 @@ class ItemController extends Controller
 
         Item::create($validated);
 
-        return redirect()->route('items.index')
+        return redirect()->route('admin.items.index')
             ->with('success', 'Item berhasil ditambahkan!');
     }
 
@@ -92,7 +101,7 @@ class ItemController extends Controller
 
         $item->update($validated);
 
-        return redirect()->route('items.index')
+        return redirect()->route('admin.items.index')
             ->with('success', 'Item berhasil diperbarui!');
     }
 
@@ -103,10 +112,10 @@ class ItemController extends Controller
     {
         try {
             $item->delete();
-            return redirect()->route('items.index')
+            return redirect()->route('admin.items.index')
                 ->with('success', 'Item berhasil dihapus!');
         } catch (\Exception $e) {
-            return redirect()->route('items.index')
+            return redirect()->route('admin.items.index')
                 ->with('error', 'Gagal menghapus item: ' . $e->getMessage());
         }
     }

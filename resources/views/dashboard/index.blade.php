@@ -22,7 +22,7 @@
     <div class="row mb-4">
         <!-- Data Barang Widget -->
         <div class="col-md-3 mb-3">
-            <a href="{{ route('items.index') }}" class="text-decoration-none">
+            <a href="{{ route('admin.items.index') }}" class="text-decoration-none">
                 <div class="card text-white bg-primary h-100">
                     <div class="card-body text-center">
                         <i class="fas fa-box fa-3x mb-3"></i>
@@ -222,7 +222,7 @@
                                 </div>
                                 <div class="card-body">
                                     <div class="d-grid gap-2">
-                                        <a href="{{ route('items.create') }}" class="btn btn-outline-primary">
+                                        <a href="{{ route('admin.items.create') }}" class="btn btn-outline-primary">
                                             <i class="fas fa-plus me-2"></i>Tambah Item Baru
                                         </a>
                                         <a href="{{ route('admin.reports.export') }}" class="btn btn-outline-success">

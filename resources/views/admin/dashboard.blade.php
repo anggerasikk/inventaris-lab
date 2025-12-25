@@ -164,7 +164,7 @@
                 <h5 class="mb-0"><i class="fas fa-chart-line me-2"></i>Statistik Peminjaman {{ date('Y') }}</h5>
             </div>
             <div class="card-body">
-                <canvas id="borrowingsChart" height="100"></canvas>
+                <canvas id="borrowingsChart" height="100" data-monthly-data="{{ json_encode($borrowingsByMonth->toArray()) }}"></canvas>
             </div>
         </div>
     </div>
@@ -176,10 +176,11 @@
 document.addEventListener('DOMContentLoaded', function() {
     // Chart Configuration
     const ctx = document.getElementById('borrowingsChart').getContext('2d');
+    const chartElement = document.getElementById('borrowingsChart');
     const months = ['Jan', 'Feb', 'Mar', 'Apr', 'Mei', 'Jun', 'Jul', 'Agu', 'Sep', 'Okt', 'Nov', 'Des'];
     
-    // Data from controller (you need to pass this data from controller)
-    const monthlyData = {!! json_encode(array_values($borrowingsByMonth->toArray())) !!};
+    // Get data from HTML attribute
+    const monthlyData = JSON.parse(chartElement.getAttribute('data-monthly-data') || '{}');
     
     // Fill empty months with 0
     const chartData = [];
