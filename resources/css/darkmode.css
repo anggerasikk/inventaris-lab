@@ -1,0 +1,509 @@
+/* ===== DARK MODE STYLES ===== */
+
+/* Default Light Mode */
+:root {
+    --primary-color: #476EAE;
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --bg-secondary-hover: #e9ecef;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --border-color: #dee2e6;
+    --card-bg: #ffffff;
+    --header-bg: #476EAE;
+    --header-text: #ffffff;
+    --alert-bg: #f8f9fa;
+    --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Dark Mode */
+html.dark-mode {
+    --primary-color: #6ea8ff;         /* Brighter accent */
+    --link-color: #8ab4ff;
+    --link-hover: #cfe6ff;
+    --bg-primary: #0f1720;            /* slightly bluish black for depth */
+    --bg-secondary: #1a1f26;          /* panels and row hover */
+    --bg-secondary-hover: #262b32;    /* hover variant for dark mode */
+    --text-primary: #e6eef8;          /* high-contrast text */
+    --text-secondary: #9fb3c9;        /* muted but readable */
+    --border-color: #22303b;          /* subtle borders */
+    --card-bg: #0f1724;               /* card backgrounds */
+    --header-bg: #071124;             /* deep header color */
+    --header-text: #ffffff;
+    --alert-bg: #14232b;
+    --shadow-color: rgba(0, 0, 0, 0.6);
+}
+
+/* Force readable text colors for elements that may be dark by default */
+html.dark-mode .text-dark,
+html.dark-mode .text-black,
+html.dark-mode .widget-card.bg-warning,
+html.dark-mode .widget-card.bg-info {
+    color: var(--text-primary) !important;
+}
+
+/* Ensure muted text is still readable */
+html.dark-mode .text-muted,
+html.dark-mode .small,
+html.dark-mode footer .text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Override Bootstrap utility classes that may force dark backgrounds */
+html.dark-mode .bg-light {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Ensure table header/footer text is readable */
+html.dark-mode .table thead th,
+html.dark-mode .table tbody td {
+    color: var(--text-primary) !important;
+}
+
+/* Improve interactive element contrast in dark mode */
+html.dark-mode a,
+html.dark-mode .nav-link,
+html.dark-mode .breadcrumb a {
+    color: var(--link-color);
+}
+
+html.dark-mode a:hover,
+html.dark-mode .nav-link:hover,
+html.dark-mode .breadcrumb a:hover {
+    color: var(--link-hover);
+    text-decoration: underline;
+}
+
+html.dark-mode .badge,
+html.dark-mode .btn-primary {
+    background-color: var(--primary-color) !important;
+    border-color: var(--primary-color) !important;
+    color: #072033 !important;
+}
+
+/* Buttons that use light background should remain readable */
+html.dark-mode .btn-light {
+    background-color: #14232b;
+    color: var(--text-primary);
+    border-color: #22303b;
+}
+
+/* Body Styles */
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Card Styles */
+.card {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
+}
+
+.card-header {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.card-title {
+    color: var(--text-primary);
+}
+
+.card-text {
+    color: var(--text-secondary);
+}
+
+/* Header Styles */
+header {
+    background-color: var(--header-bg) !important;
+    color: var(--header-text);
+    border-bottom: 1px solid var(--border-color);
+    transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+header .navbar-brand {
+    color: var(--header-text) !important;
+}
+
+.navbar-nav .nav-link {
+    color: var(--header-text) !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: rgba(255, 255, 255, 0.8) !important;
+}
+
+/* Dropdown Menu */
+.dropdown-menu {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.dropdown-menu .dropdown-item {
+    color: var(--text-primary);
+}
+
+.dropdown-menu .dropdown-item:hover {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.dropdown-menu .dropdown-header {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+.dropdown-divider {
+    border-color: var(--border-color);
+}
+
+/* Alert Styles */
+.alert {
+    background-color: var(--alert-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.alert-success {
+    background-color: rgba(25, 135, 84, 0.2);
+    border-color: #198754;
+    color: #198754;
+}
+
+    /* Theme toggle button styles */
+    .theme-toggle-wrapper {
+        margin-left: 0.5rem;
+    }
+
+    .btn-toggle {
+        background: transparent;
+        border: 1px solid transparent;
+        color: var(--header-text);
+        padding: 0.35rem 0.6rem;
+        border-radius: 0.45rem;
+        transition: background-color 0.25s ease, transform 0.2s ease, color 0.25s ease;
+    }
+
+    .btn-toggle:hover {
+        background-color: rgba(255,255,255,0.06);
+        transform: translateY(-1px);
+    }
+
+    .btn-toggle .toggle-icon {
+        transition: transform 0.35s ease;
+    }
+
+    html.dark-mode .btn-toggle .toggle-icon {
+        transform: rotate(24deg);
+    }
+
+    .toggle-label {
+        font-weight: 500;
+    }
+
+    .admin-top-controls {
+        z-index: 3000;
+    }
+
+html.dark-mode .alert-success {
+    background-color: rgba(25, 135, 84, 0.15);
+    color: #51cf66;
+}
+
+.alert-danger {
+    background-color: rgba(220, 53, 69, 0.2);
+    border-color: #dc3545;
+    color: #dc3545;
+}
+
+html.dark-mode .alert-danger {
+    background-color: rgba(220, 53, 69, 0.15);
+    color: #ff6b6b;
+}
+
+.alert-info {
+    background-color: rgba(23, 162, 184, 0.2);
+    border-color: #17a2b8;
+    color: #17a2b8;
+}
+
+html.dark-mode .alert-info {
+    background-color: rgba(23, 162, 184, 0.15);
+    color: #74c0fc;
+}
+
+.alert-warning {
+    background-color: rgba(255, 193, 7, 0.2);
+    border-color: #ffc107;
+    color: #ff6b00;
+}
+
+html.dark-mode .alert-warning {
+    background-color: rgba(255, 193, 7, 0.15);
+    color: #ffd43b;
+}
+
+/* Input Styles */
+.form-control,
+.form-select {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.form-control:focus,
+.form-select:focus {
+    background-color: var(--card-bg);
+    border-color: var(--primary-color);
+    color: var(--text-primary);
+}
+
+.form-control::placeholder {
+    color: var(--text-secondary);
+}
+
+/* Table Styles */
+.table {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.table thead {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.table thead th {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.table tbody td {
+    border-color: var(--border-color);
+}
+
+.table tbody tr:hover {
+    background-color: var(--bg-secondary);
+}
+
+/* Ensure table header and hover are always readable */
+.table thead th {
+    background-color: var(--bg-secondary) !important; /* keep header gray */
+    color: var(--text-primary) !important; /* black in light, light in dark */
+    border-color: var(--border-color) !important;
+}
+
+.table thead th:hover {
+    background-color: var(--bg-secondary-hover) !important;
+    color: var(--text-primary) !important;
+}
+
+/* When hovering table rows, keep cell text visible */
+.table tbody tr:hover td {
+    background-color: var(--bg-secondary) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Button Styles */
+.btn-outline-secondary {
+    color: var(--text-primary);
+    border-color: var(--border-color);
+}
+
+.btn-outline-secondary:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.btn-light {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.btn-light:hover {
+    background-color: var(--bg-secondary);
+    color: var(--text-primary);
+}
+
+/* Text Classes */
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+
+.text-light {
+    color: var(--text-secondary) !important;
+}
+
+.bg-light {
+    background-color: var(--bg-secondary) !important;
+}
+
+/* Footer Styles */
+footer {
+    background-color: var(--bg-secondary);
+    border-top: 1px solid var(--border-color);
+    color: var(--text-primary);
+}
+
+footer .text-muted {
+    color: var(--text-secondary) !important;
+}
+
+/* Badge and Badge Styles */
+.badge {
+    background-color: var(--primary-color);
+    color: var(--header-text);
+}
+
+/* Widget Card Hover Styles */
+.widget-card {
+    border-color: var(--border-color);
+}
+
+.widget-card.bg-success {
+    background-color: #198754 !important;
+}
+
+.widget-card.bg-warning {
+    background-color: #ffc107 !important;
+    color: #212529 !important;
+}
+
+.widget-card.bg-info {
+    background-color: #0dcaf0 !important;
+}
+
+.widget-card.bg-secondary {
+    background-color: #6c757d !important;
+}
+
+.widget-card.bg-primary {
+    background-color: var(--primary-color) !important;
+}
+
+/* Hero Background for Admin Layout */
+.hero-bg {
+    background: linear-gradient(135deg, #1e3c72 0%, #2a5298 100%) !important;
+    color: white !important;
+}
+
+html.dark-mode .hero-bg {
+    background: linear-gradient(135deg, #0f1f3f 0%, #1a3a5c 100%) !important;
+    color: var(--text-primary) !important;
+}
+
+/* Breadcrumb Styles */
+.breadcrumb {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+}
+
+.breadcrumb-item {
+    color: var(--text-primary);
+}
+
+.breadcrumb-item.active {
+    color: var(--text-secondary);
+}
+
+.breadcrumb-item a {
+    color: var(--primary-color);
+}
+
+/* Pagination Styles */
+.pagination .page-link {
+    background-color: var(--card-bg);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.pagination .page-link:hover {
+    background-color: var(--bg-secondary);
+    border-color: var(--border-color);
+    color: var(--text-primary);
+}
+
+.pagination .page-item.active .page-link {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+/* Smooth Transitions */
+* {
+    transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* Disable transitions for user interactions */
+.btn,
+.nav-link,
+.dropdown-item,
+.page-link,
+.form-control,
+.form-select {
+    transition: background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+/* ===== DARK MODE TOGGLE BUTTON STYLES ===== */
+#darkModeToggle {
+    position: relative;
+    padding: 0.5rem 0.75rem !important;
+    border-radius: 0.5rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-flex !important;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+#darkModeToggle:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+    transform: scale(1.05);
+}
+
+#darkModeToggle i {
+    font-size: 1.2rem;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    display: inline-block;
+}
+
+/* Sun icon animation for light mode */
+#darkModeToggle:not(.dark) i {
+    animation: sunRotate 0.6s ease-in-out forwards;
+}
+
+@keyframes sunRotate {
+    0% {
+        transform: rotate(-180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+}
+
+/* Moon icon animation for dark mode */
+#darkModeToggle.dark i {
+    animation: moonRotate 0.6s ease-in-out forwards;
+}
+
+@keyframes moonRotate {
+    0% {
+        transform: rotate(180deg);
+        opacity: 0;
+    }
+    100% {
+        transform: rotate(0deg);
+        opacity: 1;
+    }
+}
+
+#darkModeToggle span {
+    font-weight: 500;
+    letter-spacing: 0.5px;
+}

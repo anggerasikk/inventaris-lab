@@ -4,6 +4,7 @@ use App\Http\Controllers\ItemController;
 use App\Http\Controllers\BorrowingController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ThemeController;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Middleware\AdminMiddleware;
@@ -20,6 +21,10 @@ Route::get('/', function () {
 // Authenticated Routes
 Route::middleware(['auth'])->group(function () {
     Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+    
+    // Theme Routes
+    Route::post('/api/theme/toggle', [ThemeController::class, 'toggle']);
+    Route::get('/api/theme/preference', [ThemeController::class, 'getPreference']);
 
     // Lihat Barang untuk semua user (READ-ONLY)
     Route::get('/items', [ItemController::class, 'list'])->name('items.list');

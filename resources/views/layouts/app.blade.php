@@ -3,9 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
+    <meta name="user-authenticated" content="{{ Auth::check() ? 'true' : 'false' }}">
+    @auth
+        <meta name="user-theme" content="{{ Auth::user()->theme_preference ?? 'light' }}">
+    @endauth
     <title>Inventaris Laboratorium - @yield('title', 'Sistem')</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="{{ asset('css/darkmode.css') }}" rel="stylesheet">
     <style>
         :root {
             --primary-color: #476EAE;
@@ -141,6 +147,9 @@
                         </a>
                     </li>
                 @else
+                    <li class="nav-item ms-2">
+                        @include('components.theme-toggle')
+                    </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle text-white d-flex align-items-center gap-1" href="#" id="navbarDropdown" 
                             role="button" data-bs-toggle="dropdown" aria-expanded="false" title="{{ Auth::user()->name }}">
@@ -355,6 +364,7 @@
     </footer>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{{ asset('js/darkmode.js') }}"></script>
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Auto-dismiss alerts after 5 seconds
