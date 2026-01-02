@@ -96,6 +96,45 @@
                 </div>
                 <div class="card-body">
                     <p class="mb-3">Area ini dapat diisi dengan tabel data peminjaman/pengembalian terbaru, notifikasi, atau statistik khusus.</p>
+                    <!-- Notifications -->
+                    <div class="mb-3">
+                        <h6>Notifikasi</h6>
+                        @if($pendingList->count() || $upcomingReturns->count() || $newUsers->count())
+                            <ul class="list-group">
+                                @foreach($pendingList as $p)
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <strong>Permintaan Peminjaman</strong>
+                                            <div class="small">{{ $p->user->name ?? 'Pengguna' }} meminta "{{ $p->item->name ?? 'Barang' }}"</div>
+                                        </div>
+                                        <span class="badge bg-warning">Menunggu</span>
+                                    </li>
+                                @endforeach
+
+                                @foreach($upcomingReturns as $r)
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <strong>Pengembalian Mendekat</strong>
+                                            <div class="small">{{ $r->user->name ?? 'Pengguna' }} akan mengembalikan "{{ $r->item->name ?? 'Barang' }}" pada {{ $r->return_date->format('d/m/Y') }}</div>
+                                        </div>
+                                        <span class="badge bg-info">{{ $r->return_date->diffForHumans() }}</span>
+                                    </li>
+                                @endforeach
+
+                                @foreach($newUsers as $u)
+                                    <li class="list-group-item d-flex justify-content-between align-items-start">
+                                        <div>
+                                            <strong>Akun Baru</strong>
+                                            <div class="small">{{ $u->name }} mendaftar pada {{ $u->created_at->format('d/m/Y H:i') }}</div>
+                                        </div>
+                                        <span class="badge bg-success">Baru</span>
+                                    </li>
+                                @endforeach
+                            </ul>
+                        @else
+                            <div class="text-muted small">Tidak ada notifikasi baru.</div>
+                        @endif
+                    </div>
                     
                     <!-- Recent Peminjaman Table -->
                     <div class="row">

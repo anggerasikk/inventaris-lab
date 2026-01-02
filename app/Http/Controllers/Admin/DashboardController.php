@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Item;
 use App\Models\Borrowing;
 use App\Models\User;
+use Carbon\Carbon;
 
 class DashboardController extends Controller
 {
@@ -35,6 +36,23 @@ class DashboardController extends Controller
             ->orderBy('stock', 'asc')
             ->limit(5)
             ->get();
+
+        // Notifications for admin
+        $pendingList = Borrowing::where('status', 'pending')
+            ->with('user', 'item')
+            ->orderBy('created_at', 'desc')
+            ->limit(10)
+            ->get();
+
+        $upcomingReturns = Borrowing::where('status', 'approved')
+            ->whereBetween('return_date', [Carbon::today(), Carbon::today()->addDays(3)])
+            ->with('user', 'item')
+            ->orderBy('return_date')
+            ->get();
+
+        $newUsers = User::where('created_at', '>=', Carbon::now()->subDay())
+            ->orderBy('created_at', 'desc')
+            ->get();
         
         return view('admin.dashboard', compact(
             'totalItems',
@@ -44,6 +62,10 @@ class DashboardController extends Controller
             'recentBorrowings',
             'borrowingsByMonth',
             'lowStockItems'
-        ));
+        ))->with([
+            'pendingList' => $pendingList,
+            'upcomingReturns' => $upcomingReturns,
+            'newUsers' => $newUsers,
+        ]);
     }
 }
